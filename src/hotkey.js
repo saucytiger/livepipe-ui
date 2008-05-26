@@ -16,7 +16,6 @@ var HotKey = Class.create({
 		letter = letter.toUpperCase();
 		Control.HotKey.hotkeys.push(this);
 		this.options = Object.extend({
-			capture: false,
 			element: false,
 			shiftKey: false,
 			altKey: false,
@@ -30,8 +29,6 @@ var HotKey = Class.create({
 				if(this.notify('beforeCallback',event) === false)
 					return;
 				this.callback(event);	
-				if(this.options.capture)
-					event.stop();
 				this.notify('afterCallback',event);
 			}
 		}.bind(this);
@@ -48,7 +45,7 @@ var HotKey = Class.create({
 	},
 	destroy: function(){
 		this.disable();
-		
+		Control.HotKey.hotkeys = Control.HotKey.hotkeys.without(this);
 	}
 });
 Object.extend(Control.HotKey,{

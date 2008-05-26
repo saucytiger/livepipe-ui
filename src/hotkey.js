@@ -6,9 +6,7 @@
  * @url http://livepipe.net/controls/hotkey/
  */
 
-if(typeof(Control) == 'undefined')
-	var Control = {};
-Control.HotKey = Class.create({
+var HotKey = Class.create({
 	initialize: function(letter,callback,options){
 		letter = letter.toUpperCase();
 		Control.HotKey.hotkeys.push(this);

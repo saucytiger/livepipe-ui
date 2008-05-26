@@ -45,7 +45,7 @@ Event.Behavior = {
 	}
 };
 
-Event.Behavior.Verbs = $({});
+Event.Behavior.Verbs = $H({});
 
 Event.Behavior.Verb = Class.create();
 Object.extend(Event.Behavior.Verb.prototype,{

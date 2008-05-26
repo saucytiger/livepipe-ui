@@ -1,11 +1,16 @@
 /**
- * @author Ryan Johnson
- * @copyright 2008 PersonalGrid Corporation
+ * @author Ryan Johnson <http://saucytiger.com/>
+ * @copyright 2008 PersonalGrid Corporation <http://personalgrid.com/>
  * @package LivePipe UI
  * @license MIT
- * @url http://livepipe.net/controls/hotkey/
+ * @url http://livepipe.net/extra/hotkey
+ * @require prototype.js, livepipe.js
  */
 
+if(typeof(Prototype) == "undefined")
+	throw "HotKey requires Prototype to be loaded."
+if(typeof(Object.Event) == "undefined")
+	throw "HotKey requires Object.Event to be loaded.";
 var HotKey = Class.create({
 	initialize: function(letter,callback,options){
 		letter = letter.toUpperCase();

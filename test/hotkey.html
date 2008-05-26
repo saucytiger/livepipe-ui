@@ -3,7 +3,7 @@
 		<link rel="stylesheet" href="common.css"/>
 		<script src="../lib/prototype.js"></script>
 		<script src="../src/livepipe.js"></script>
-		<script src="../src/control_hotkey.js"></script>
+		<script src="../src/hotkey.js"></script>
 		<script>
 			document.observe('dom:loaded',function(){
 				var console_element = $('console');
@@ -13,26 +13,26 @@
 				$('console_clear').observe('click',function(){
 					console_element.innerHTML = '';
 				});
-				new Control.HotKey('a',function(){
+				new HotKey('a',function(){
 					log('control + "a" pressed');
 				});
-				new Control.HotKey('b',function(){
+				new HotKey('b',function(){
 					log('control + shift + "b" pressed');
 				},{
 					shiftKey: true
 				});
-				new Control.HotKey('c',function(){
+				new HotKey('c',function(){
 					log('control + shift + alt/option + "c" pressed');
 				},{
 					shiftKey: true,
 					altKey: true
 				});
-				new Control.HotKey('d',function(){
+				new HotKey('d',function(){
 					log('"d" pressed');
 				},{
 					ctrlKey: false
 				});
-				new Control.HotKey('e',function(){
+				new HotKey('e',function(){
 					log('control + "e" pressed inside of textarea');
 				},{
 					element: $(document.body).down('textarea')
@@ -49,7 +49,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>Control.HotKey Examples<span>view source for code</span></h1>
+		<h1>HotKey Examples<span>view source for code</span></h1>
 		<p>The following hot keys are enabled:</p>
 		<ul>
 			<li>control + "<b>a</b>"</li>

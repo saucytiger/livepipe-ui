@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "LivePipe UI"
-  s.version = "0.9.0"
+  s.version = "0.9.1"
   s.date = "2008-06-02"
   s.summary = "User interface components for Prototype.js"
   s.email = "saucytiger@gmail.com"
@@ -18,7 +18,9 @@ Gem::Specification.new do |s|
     "livepipe-ui.gemspec",
     "MIT-LICENSE",
     "README",
-    "src/control_hotkey.js",
+    "src/cookie.js",
+    "src/event_behavior.js",
+    "src/hotkey.js",
     "src/livepipe.js",
     "test/common.css",
     "test/hotkey.html"

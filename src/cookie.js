@@ -7,6 +7,11 @@
  * @attribution http://www.quirksmode.org/js/cookies.html
  */
 
+if(typeof(Prototype) == "undefined")
+	throw "Cookie requires Prototype to be loaded."
+if(typeof(Object.Event) == "undefined")
+	throw "Cookie requires Object.Event to be loaded.";
+
 var Cookie = {
 	set: function(name,value,seconds){
 		if(seconds){
@@ -15,9 +20,11 @@ var Cookie = {
 			expiry = '; expires=' + d.toGMTString();
 		}else
 			expiry = '';
+		Cookie.notify('set',name,value);
 		document.cookie = name + "=" + value + expiry + "; path=/";
 	},
 	get: function(name){
+		Cookie.notify('get',name);
 		nameEQ = name + "=";
 		ca = document.cookie.split(';');
 		for(i = 0; i < ca.length; i++){
@@ -27,9 +34,11 @@ var Cookie = {
 			if(c.indexOf(nameEQ) == 0)
 				return c.substring(nameEQ.length,c.length);
 		}
-		return null
+		return null;
 	},
 	unset: function(name){
+		Cookie.notify('unset',name);
 		Cookie.set(name,'',-1);
 	}
 };
+Object.Event.extend(Cookie);

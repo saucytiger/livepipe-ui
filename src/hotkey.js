@@ -11,10 +11,11 @@ if(typeof(Prototype) == "undefined")
 	throw "HotKey requires Prototype to be loaded."
 if(typeof(Object.Event) == "undefined")
 	throw "HotKey requires Object.Event to be loaded.";
+
 var HotKey = Class.create({
 	initialize: function(letter,callback,options){
 		letter = letter.toUpperCase();
-		Control.HotKey.hotkeys.push(this);
+		HotKey.hotkeys.push(this);
 		this.options = Object.extend({
 			element: false,
 			shiftKey: false,
@@ -28,14 +29,14 @@ var HotKey = Class.create({
 			if(!event || (this.letter.charCodeAt(0) == event.keyCode && ((!this.options.shiftKey || (this.options.shiftKey && event.shiftKey)) && (!this.options.altKey || (this.options.altKey && event.altKey)) && (!this.options.ctrlKey || (this.options.ctrlKey && event.ctrlKey))))){
 				if(this.notify('beforeCallback',event) === false)
 					return;
-				this.callback(event);	
+				this.callback(event);
 				this.notify('afterCallback',event);
 			}
 		}.bind(this);
 		this.enable();
 	},
 	trigger: function(){
-		this.handler(false);
+		this.handler();
 	},
 	enable: function(){
 		this.element.observe('keydown',this.handler);
@@ -45,10 +46,10 @@ var HotKey = Class.create({
 	},
 	destroy: function(){
 		this.disable();
-		Control.HotKey.hotkeys = Control.HotKey.hotkeys.without(this);
+		HotKey.hotkeys = Control.HotKey.hotkeys.without(this);
 	}
 });
-Object.extend(Control.HotKey,{
+Object.extend(HotKey,{
 	hotkeys: []
 });
-Object.Event.extend(Control.HotKey);
+Object.Event.extend(HotKey);

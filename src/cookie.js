@@ -3,8 +3,9 @@
  * @copyright 2008 PersonalGrid Corporation <http://personalgrid.com/>
  * @package LivePipe UI
  * @license MIT
- * @url http://livepipe.net/controls/hotkey/
+ * @url http://livepipe.net/extra/cookie
  * @attribution http://www.quirksmode.org/js/cookies.html
+ * @require prototype.js, livepipe.js
  */
 
 if(typeof(Prototype) == "undefined")

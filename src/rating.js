@@ -1,27 +1,18 @@
 /**
- * @author Ryan Johnson <ryan@livepipe.net>
- * @copyright 2007 LivePipe LLC
- * @package Control.Rating
+ * @author Ryan Johnson <http://saucytiger.com/>
+ * @copyright 2008 PersonalGrid Corporation <http://personalgrid.com/>
+ * @package LivePipe UI
  * @license MIT
- * @url http://livepipe.net/projects/control_rating/
- * @version 1.0.1
+ * @url http://livepipe.net/control/rating
+ * @require prototype.js, livepipe.js
  */
 
-if(typeof(Control) == 'undefined')
-	Control = {};
-Control.Rating = Class.create();
-Object.extend(Control.Rating,{
-	instances: [],
-	findByElementId: function(id){
-		return Control.Rating.instances.find(function(instance){
-			return (instance.container.id && instance.container.id == id);
-		});
-	}
-});
-Object.extend(Control.Rating.prototype,{
-	container: false,
-	value: false,
-	options: {},
+if(typeof(Prototype) == "undefined")
+	throw "Control.Rating requires Prototype to be loaded."
+if(typeof(Object.Event) == "undefined")
+	throw "Control.Rating requires Object.Event to be loaded.";
+
+Control.Rating = Class.create({
 	initialize: function(container,options){
 		Control.Rating.instances.push(this);
 		this.value = false;
@@ -149,18 +140,14 @@ Object.extend(Control.Rating.prototype,{
 			Event.stop(event);
 			return false;
 		}
-	},
-	notify: function(event_name){
-		try{
-			if(this.options[event_name])
-				return [this.options[event_name].apply(this.options[event_name],$A(arguments).slice(1))];
-		}catch(e){
-			if(e != $break)
-				throw e;
-			else
-				return false;
-		}
 	}
 });
-if(typeof(Object.Event) != 'undefined')
-	Object.Event.extend(Control.Rating);
+Object.extend(Control.Rating,{
+	instances: [],
+	findByElementId: function(id){
+		return Control.Rating.instances.find(function(instance){
+			return (instance.container.id && instance.container.id == id);
+		});
+	}
+});
+Object.Event.extend(Control.Rating);

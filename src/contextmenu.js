@@ -1,5 +1,6 @@
 Control.ContextMenu = Class.create({
 	initialize: function(container,options){
+		Control.ContextMenu.load();
 		this.options = Object.extend({
 			leftClick: false,
 			disableOnShiftKey: true,
@@ -35,6 +36,7 @@ Control.ContextMenu = Class.create({
 		Control.ContextMenu.container.show();
 		if(this.notify('afterOpen',event) === false)
 			return false;
+		event.stop();
 		return true;
 	},
 	close: function(event){
@@ -98,12 +100,16 @@ Control.ContextMenu = Class.create({
 	}
 });
 Object.extend(Control.ContextMenu,{
+	loaded: false,
 	capture_all: false,
 	menus: [],
 	current: false,
 	enabled: false,
 	offset: 4,
 	load: function(capture_all){
+		if(Control.ContextMenu.loaded)
+			return;
+		Control.ContextMenu.loaded = true;
 		if(typeof(capture_all) == 'undefined')
 			capture_all = false;
 		Control.ContextMenu.capture_all = capture_all;

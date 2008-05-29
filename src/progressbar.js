@@ -13,14 +13,11 @@ if(typeof(Object.Event) == "undefined")
 	throw "Control.ProgressBar requires Object.Event to be loaded.";
 
 Control.ProgressBar = Class.create({
-	container: false,
-	containerWidth: 0,
-	progressContainer: false,
-	progress: 0,
-	executer: false,
-	active: false,
-	poller: false,
 	initialize: function(container,options){
+		this.progress = 0;
+		this.executer = false;
+		this.active = false;
+		this.poller = false;
 		this.container = $(container);
 		this.containerWidth = this.container.getDimensions().width - (parseInt(this.container.getStyle('border-right-width').replace(/px/,'')) + parseInt(this.container.getStyle('border-left-width').replace(/px/,'')));
 		this.progressContainer = $(document.createElement('div'));

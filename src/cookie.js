@@ -9,7 +9,7 @@
  */
 
 if(typeof(Prototype) == "undefined")
-	throw "Cookie requires Prototype to be loaded."
+	throw "Cookie requires Prototype to be loaded.";
 if(typeof(Object.Event) == "undefined")
 	throw "Cookie requires Object.Event to be loaded.";
 

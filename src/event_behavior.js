@@ -9,9 +9,10 @@
  */
 
 if(typeof(Prototype) == "undefined")
-	throw "Event.Behavior requires Prototype to be loaded."
+	throw "Event.Behavior requires Prototype to be loaded.";
 if(typeof(Object.Event) == "undefined")
 	throw "Event.Behavior requires Object.Event to be loaded.";
+	
 Event.Behavior = {
 	addVerbs: function(verbs){
 		for(name in verbs){

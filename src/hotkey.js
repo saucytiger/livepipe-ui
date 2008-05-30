@@ -8,7 +8,7 @@
  */
 
 if(typeof(Prototype) == "undefined")
-	throw "HotKey requires Prototype to be loaded."
+	throw "HotKey requires Prototype to be loaded.";
 if(typeof(Object.Event) == "undefined")
 	throw "HotKey requires Object.Event to be loaded.";
 

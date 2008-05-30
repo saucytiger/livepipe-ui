@@ -8,7 +8,7 @@
  */
 
 if(typeof(Prototype) == "undefined")
-	throw "Control.SelectMultiple requires Prototype to be loaded."
+	throw "Control.SelectMultiple requires Prototype to be loaded.";
 if(typeof(Object.Event) == "undefined")
 	throw "Control.SelectMultiple requires Object.Event to be loaded.";
 

@@ -1,3 +1,17 @@
+/**
+ * @author Ryan Johnson <http://saucytiger.com/>
+ * @copyright 2008 PersonalGrid Corporation <http://personalgrid.com/>
+ * @package LivePipe UI
+ * @license MIT
+ * @url http://livepipe.net/control/contextmenu
+ * @require prototype.js, livepipe.js
+ */
+
+if(typeof(Prototype) == "undefined")
+	throw "Control.ContextMenu requires Prototype to be loaded.";
+if(typeof(Object.Event) == "undefined")
+	throw "Control.ContextMenu requires Object.Event to be loaded.";
+
 Control.ContextMenu = Class.create({
 	initialize: function(container,options){
 		Control.ContextMenu.load();

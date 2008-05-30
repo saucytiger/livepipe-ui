@@ -8,7 +8,7 @@
  */
 
 if(typeof(Prototype) == "undefined")
-	throw "Control.ProgressBar requires Prototype to be loaded."
+	throw "Control.ProgressBar requires Prototype to be loaded.";
 if(typeof(Object.Event) == "undefined")
 	throw "Control.ProgressBar requires Object.Event to be loaded.";
 

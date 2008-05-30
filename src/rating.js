@@ -8,7 +8,7 @@
  */
 
 if(typeof(Prototype) == "undefined")
-	throw "Control.Rating requires Prototype to be loaded."
+	throw "Control.Rating requires Prototype to be loaded.";
 if(typeof(Object.Event) == "undefined")
 	throw "Control.Rating requires Object.Event to be loaded.";
 

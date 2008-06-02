@@ -3,10 +3,9 @@
  * @copyright 2008 PersonalGrid Corporation <http://personalgrid.com/>
  * @package LivePipe UI
  * @license MIT
- * @url http://livepipe.net/control/textarea
+ * @url http://livepipe.net/control/window
  * @require prototype.js, effects.js, draggable.js, resizable.js, livepipe.js
  */
-
 
 //adds onDraw and constrainToViewport option to draggable
 if(typeof(Draggable) != 'undefined'){

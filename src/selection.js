@@ -1,5 +1,12 @@
-if(typeof(Control) == 'undefined')
-	Control = {};
+/**
+ * @author Ryan Johnson <http://saucytiger.com/>
+ * @copyright 2008 PersonalGrid Corporation <http://personalgrid.com/>
+ * @package LivePipe UI
+ * @license MIT
+ * @url http://livepipe.net/control/selection
+ * @require prototype.js, effects.js, draggable.js, livepipe.js
+ */
+
 Control.Selection = {
 	options: {
 	    resize_layout_timeout: 125,

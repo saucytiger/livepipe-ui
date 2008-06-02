@@ -7,6 +7,11 @@
  * @require prototype.js, effects.js, draggable.js, livepipe.js
  */
 
+if(typeof(Prototype) == "undefined")
+	throw "Control.Selection requires Prototype to be loaded.";
+if(typeof(Object.Event) == "undefined")
+	throw "Control.Selection requires Object.Event to be loaded.";
+
 Control.Selection = {
 	options: {
 		resize_layout_timeout: 125,

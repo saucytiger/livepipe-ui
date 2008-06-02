@@ -81,6 +81,8 @@ if(typeof(Draggable) != 'undefined'){
 	};
 }
 
+if(typeof(Prototype) == "undefined")
+	throw "Control.Window requires Prototype to be loaded.";
 if(typeof(IframeShim) == "undefined")
 	throw "Control.Window requires IframeShim to be loaded.";
 if(typeof(Object.Event) == "undefined")

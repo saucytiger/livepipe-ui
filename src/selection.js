@@ -9,7 +9,7 @@
 
 Control.Selection = {
 	options: {
-	    resize_layout_timeout: 125,
+		resize_layout_timeout: 125,
 		selected: Prototype.emptyFunction,
 		deselected: Prototype.emptyFunction,
 		change: Prototype.emptyFunction,
@@ -46,14 +46,14 @@ Control.Selection = {
 		if(Control.Selection.options.drag_proxy && typeof(Draggable) != 'undefined')
 			Control.Selection.DragProxy.load();
 		Event.observe(window,'resize',function(){
-		    if(Control.Selection.resizeTimeout)
-		        window.clearTimeout(Control.Selection.resizeTimeout);
-		    Control.Selection.resizeTimeout = window.setTimeout(Control.Selection.recalculateLayout,Control.Selection.options.resize_layout_timeout);
+			if(Control.Selection.resizeTimeout)
+				window.clearTimeout(Control.Selection.resizeTimeout);
+			Control.Selection.resizeTimeout = window.setTimeout(Control.Selection.recalculateLayout,Control.Selection.options.resize_layout_timeout);
 		});
 		if(Prototype.Browser.IE){
-            var body = $$('body').first();
-            body.observe('mouseleave',Control.Selection.stop);
-            body.observe('mouseup',Control.Selection.stop);
+			var body = $$('body').first();
+			body.observe('mouseleave',Control.Selection.stop);
+			body.observe('mouseup',Control.Selection.stop);
 		}
 	},
 	enable: function(){
@@ -101,40 +101,40 @@ Control.Selection = {
 			height: dimensions.height,
 			activationTargetMouseMove: function(){
 				Control.Selection.notify('activationTargetMouseMove',element);
-	            activation_targets.each(function(activation_target){
-	                activation_target.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
-	            });
-	            Control.Selection.DragProxy.container.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
+				activation_targets.each(function(activation_target){
+					activation_target.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
+				});
+				Control.Selection.DragProxy.container.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
 			},
 			activationTargetMouseDown: function(event){
 				if(!Control.Selection.elements.include(element))
-	                Control.Selection.select(element);
-	            Control.Selection.DragProxy.start(event);
-	            Control.Selection.DragProxy.container.hide();
-	            activation_targets.each(function(activation_target){
-	                activation_target.observe('mousemove',element._control_selection.activationTargetMouseMove);
-	            });
-	            Control.Selection.DragProxy.container.observe('mousemove',element._control_selection.activationTargetMouseMove);
+					Control.Selection.select(element);
+				Control.Selection.DragProxy.start(event);
+				Control.Selection.DragProxy.container.hide();
+				activation_targets.each(function(activation_target){
+					activation_target.observe('mousemove',element._control_selection.activationTargetMouseMove);
+				});
+				Control.Selection.DragProxy.container.observe('mousemove',element._control_selection.activationTargetMouseMove);
 			},
 			activationTargetClick: function(){
 				Control.Selection.select(element);
-	            if(typeof(activation_target_callback) == "function")
+				if(typeof(activation_target_callback) == "function")
 					activation_target_callback();
 				activation_targets.each(function(activation_target){
-	                activation_target.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
-	            });
-	            Control.Selection.DragProxy.container.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
+					activation_target.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
+				});
+				Control.Selection.DragProxy.container.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
 			}
 		};
 		element.onselectstart = function(){
-	        return false;
-	    };
-	    element.unselectable = 'on';
-	    element.style.MozUserSelect = 'none';	
+			return false;
+		};
+		element.unselectable = 'on';
+		element.style.MozUserSelect = 'none';	
 		if(activation_targets){
-		    activation_targets.each(function(activation_target){
-			    activation_target.observe('mousedown',element._control_selection.activationTargetMouseDown);
-			    activation_target.observe('click',element._control_selection.activationTargetClick);
+			activation_targets.each(function(activation_target){
+				activation_target.observe('mousedown',element._control_selection.activationTargetMouseDown);
+				activation_target.observe('click',element._control_selection.activationTargetClick);
 			});
 		}
 		Control.Selection.selectableElements.push(element);
@@ -144,18 +144,18 @@ Control.Selection = {
 		element = $(element);
 		if(element._control_selection.activation_targets){
 			element._control_selection.activation_targets.each(function(activation_target){
-			    activation_target.stopObserving('mousedown',element._control_selection.activationTargetMouseDown);
+				activation_target.stopObserving('mousedown',element._control_selection.activationTargetMouseDown);
 			});
 			element._control_selection.activation_targets.each(function(activation_target){
-			    activation_target.stopObserving('click',element._control_selection.activationTargetClick);
+				activation_target.stopObserving('click',element._control_selection.activationTargetClick);
 			});
 		}
 		element._control_selection = null;
 		element.onselectstart = function() {
-	        return true;
-	    };
-	    element.unselectable = 'off';
-	    element.style.MozUserSelect = '';
+			return true;
+		};
+		element.unselectable = 'off';
+		element.style.MozUserSelect = '';
 		var position = 0;
 		Control.Selection.selectableElements.each(function(selectable_element,i){
 			if(selectable_element == element){
@@ -409,9 +409,9 @@ Control.Selection = {
 			Control.Selection.DragProxy.notify('start',Control.Selection.DragProxy.container,Control.Selection.elements);
 		},
 		stop: function(){
-		    window.setTimeout(function(){
-		        Control.Selection.DragProxy.active = false;
-		        Control.Selection.DragProxy.container.hide();
+			window.setTimeout(function(){
+				Control.Selection.DragProxy.active = false;
+				Control.Selection.DragProxy.container.hide();
     			if(Control.Selection.DragProxy.container._draggable){
 					Control.Selection.DragProxy.container._draggable.destroy();
 					Control.Selection.DragProxy.container._draggable = null;

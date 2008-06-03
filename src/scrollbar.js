@@ -31,13 +31,13 @@ Control.ScrollBar = Class.create({
 			scroll_to_smoothing: 0.01,
 			scroll_to_steps: 15,
 			proportional: true,
-			sliderOptions: {}
+			slider_options: {}
 		},options || {});
 		this.slider = new Control.Slider(this.handle,this.track,Object.extend({
 			axis: 'vertical',
 			onSlide: this.onChange.bind(this),
 			onChange: this.onChange.bind(this)
-		},this.options.sliderOptions));
+		},this.options.slider_options));
 		this.recalculateLayout();
 		Event.observe(window,'resize',this.boundResizeObserver);
 		this.handle.observe('mousedown',function(){

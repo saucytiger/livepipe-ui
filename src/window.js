@@ -742,8 +742,11 @@ Control.Overlay = {
 				from: 0,
 				to: Control.Overlay.lastOpacity,
 				duration: (fade === true ? 0.75 : fade) / 2
-			});			
+			});
 		}else{
+			Control.Overlay.container.setStyle({
+				opacity: opacity || 1
+			});
 			Control.Overlay.container.show();
 			Control.Overlay.notify('afterShow');
 		}

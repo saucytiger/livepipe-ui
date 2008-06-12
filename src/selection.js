@@ -94,7 +94,8 @@ Control.Selection = {
 	},
 	addSelectable: function(element,object,activation_targets,activation_target_callback){
 		element = $(element);
-		activation_targets = activation_targets.each ? activation_targets : [activation_targets];
+		if(activation_targets)
+			activation_targets = activation_targets.each ? activation_targets : [activation_targets];
 		var dimensions = element.getDimensions();
 		var offset = Position.cumulativeOffset(element);
 		element._control_selection = {
@@ -106,9 +107,11 @@ Control.Selection = {
 			height: dimensions.height,
 			activationTargetMouseMove: function(){
 				Control.Selection.notify('activationTargetMouseMove',element);
-				activation_targets.each(function(activation_target){
-					activation_target.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
-				});
+				if(activation_targets){
+					activation_targets.each(function(activation_target){
+						activation_target.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
+					});
+				}
 				Control.Selection.DragProxy.container.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
 			},
 			activationTargetMouseDown: function(event){
@@ -116,18 +119,22 @@ Control.Selection = {
 					Control.Selection.select(element);
 				Control.Selection.DragProxy.start(event);
 				Control.Selection.DragProxy.container.hide();
-				activation_targets.each(function(activation_target){
-					activation_target.observe('mousemove',element._control_selection.activationTargetMouseMove);
-				});
+				if(activation_targets){
+					activation_targets.each(function(activation_target){
+						activation_target.observe('mousemove',element._control_selection.activationTargetMouseMove);
+					});
+				}
 				Control.Selection.DragProxy.container.observe('mousemove',element._control_selection.activationTargetMouseMove);
 			},
 			activationTargetClick: function(){
 				Control.Selection.select(element);
 				if(typeof(activation_target_callback) == "function")
 					activation_target_callback();
-				activation_targets.each(function(activation_target){
-					activation_target.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
-				});
+				if(activation_targets){
+					activation_targets.each(function(activation_target){
+						activation_target.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
+					});
+				}
 				Control.Selection.DragProxy.container.stopObserving('mousemove',element._control_selection.activationTargetMouseMove);
 			}
 		};
@@ -135,7 +142,7 @@ Control.Selection = {
 			return false;
 		};
 		element.unselectable = 'on';
-		element.style.MozUserSelect = 'none';	
+		element.style.MozUserSelect = 'none';
 		if(activation_targets){
 			activation_targets.each(function(activation_target){
 				activation_target.observe('mousedown',element._control_selection.activationTargetMouseDown);

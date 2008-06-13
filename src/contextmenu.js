@@ -86,6 +86,7 @@ Control.ContextMenu = Class.create({
 	},
 	addItem: function(params){
 		this.items.push(params);
+		return this;
 	},
 	destroy: function(){
 		this.container.stopObserving(Prototype.Browser.Opera || this.options.leftClick ? 'click' : 'contextmenu');

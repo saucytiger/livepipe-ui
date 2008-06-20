@@ -26,7 +26,13 @@ var HotKey = Class.create({
 		this.callback = callback;
 		this.element = $(this.options.element || document);
 		this.handler = function(event){
-			if(!event || (this.letter.charCodeAt(0) == event.keyCode && ((!this.options.shiftKey || (this.options.shiftKey && event.shiftKey)) && (!this.options.altKey || (this.options.altKey && event.altKey)) && (!this.options.ctrlKey || (this.options.ctrlKey && event.ctrlKey))))){
+			if(!event || (
+				(Event['KEY_' + this.letter] || this.letter.charCodeAt(0)) == event.keyCode &&
+				((!this.options.shiftKey || (this.options.shiftKey && event.shiftKey)) &&
+					(!this.options.altKey || (this.options.altKey && event.altKey)) &&
+					(!this.options.ctrlKey || (this.options.ctrlKey && event.ctrlKey))
+				)
+			)){
 				if(this.notify('beforeCallback',event) === false)
 					return;
 				this.callback(event);

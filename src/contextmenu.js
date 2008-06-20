@@ -28,8 +28,8 @@ Control.ContextMenu = Class.create({
 		},options || {});
 		this.activated = false;
 		this.items = this.options.items || [];
-		this.container = $(container);					
-		this.container.observe(this.options.leftClick ? 'mousedown' : (Prototype.Browser.Opera ? 'click' : 'contextmenu'),function(event){
+		this.container = $(container);
+		this.container.observe(this.options.leftClick ? 'click' : (Prototype.Browser.Opera ? 'click' : 'contextmenu'),function(event){
 			if(!Control.ContextMenu.enabled || Prototype.Browser.Opera && !event.ctrlKey)
 				return;
 			this.open(event);

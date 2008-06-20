@@ -701,6 +701,7 @@ Control.Overlay = {
 		$(document.body).insert(Control.Overlay.container);
 		if(Prototype.Browser.IE){
 			Control.Overlay.container.setStyle(Control.Overlay.ieStyles);
+			Event.observe(window,'scroll',Control.Overlay.positionOverlay);
 			Event.observe(window,'resize',Control.Overlay.positionOverlay);
 			Control.Overlay.observe('beforeShow',Control.Overlay.positionOverlay);
 		}else

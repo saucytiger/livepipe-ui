@@ -77,7 +77,10 @@ Control.ContextMenu = Class.create({
 			var item_container = $(document.createElement('li'));
 			item_container.update($value(item.label));
 			list.appendChild(item_container);
+			item_container[$value(item.enabled) ? 'removeClassName' : 'addClassName']('disabled');
 			item_container.observe('mousedown',function(event,item){
+				if(!$value(item.enabled))
+					return event.stop();
 				this.activated = $value(item.label);
 			}.bindAsEventListener(this,item));
 			item_container.observe('click',this.selectMenuItem.bindAsEventListener(this,item,item_container));
@@ -85,6 +88,8 @@ Control.ContextMenu = Class.create({
 		}.bind(this));
 	},
 	addItem: function(params){
+		if(!'enabled' in params)
+			params.enabled = true;
 		this.items.push(params);
 		return this;
 	},
@@ -93,6 +98,8 @@ Control.ContextMenu = Class.create({
 		this.items = [];
 	},
 	selectMenuItem: function(event,item,item_container){
+		if(!$value(item.enabled))
+			return event.stop();
 		if(!this.activated || this.activated == $value(item.label)){
 			if(this.options.animation){
 				Control.ContextMenu.container.addClassName(this.options.activatedClassName);

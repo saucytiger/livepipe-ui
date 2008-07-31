@@ -155,6 +155,7 @@ Control.Window = Class.create({
 			//draggable and resizable
 			constrainToViewport: false,
 			//ajax
+			method: 'post',
 			parameters: {},
 			onComplete: Prototype.emptyFunction,
 			onSuccess: Prototype.emptyFunction,
@@ -288,7 +289,7 @@ Control.Window = Class.create({
 					if(this.options.indicator)
 						this.showIndicator();
 					this.ajaxRequest = new Ajax.Request(this.href,{
-						method: 'post',
+						method: this.options.method,
 						parameters: this.options.parameters,
 						onComplete: function(request){
 							this.notify('onComplete',request);

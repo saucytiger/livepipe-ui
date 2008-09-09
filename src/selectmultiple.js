@@ -63,13 +63,14 @@ Control.SelectMultiple = Class.create({
 	},
 	setValue: function(value_string){
 		this.numberOfCheckedBoxes = 0;
-		(value_string.split ? value_string.split(this.options.valueSeparator) : value_string).each(function(value){
-			this.checkboxes.each(function(checkbox){
+		var value_collection = $A(value_string.split ? value_string.split(this.options.valueSeparator) : value_string)
+		this.checkboxes.each(function(checkbox){
+			checkbox.checked = false;
+			value_collection.each(function(value){
 				if(checkbox.value == value){
 					++this.numberOfCheckedBoxes;
 					checkbox.checked = true;
-				}else
-					checkbox.checked = false;
+				}
 			}.bind(this));
 		}.bind(this));
 		this.scanCheckBoxes();

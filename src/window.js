@@ -787,10 +787,9 @@ Control.Overlay = {
 	},
 	//IE only
 	positionOverlay: function(){
-		var dimensions = document.viewport.getDimensions();
 		Control.Overlay.container.setStyle({
-			width: dimensions.width + 'px',
-			height: dimensions.height + 'px'
+			width: document.body.clientWidth + 'px',
+			height: document.body.clientHeight + 'px'
 		});
 	}
 };
@@ -798,7 +797,7 @@ Object.Event.extend(Control.Overlay);
 
 Control.ToolTip = Class.create(Control.Window,{
 	initialize: function($super,container,tooltip,options){
-		$super(tooltip,Object.extend(Object.extend(Control.ToolTip.defaultOptions,options || {}),{
+		$super(tooltip,Object.extend(Object.extend(Object.clone(Control.ToolTip.defaultOptions),options || {}),{
 			position: 'mouse',
 			hover: container
 		}));
@@ -813,7 +812,7 @@ Object.extend(Control.ToolTip,{
 Control.Modal = Class.create(Control.Window,{
 	initialize: function($super,container,options){
 		Control.Modal.InstanceMethods.beforeInitialize.bind(this)();
-		$super(container,Object.extend(Control.Modal.defaultOptions,options || {}));
+		$super(container,Object.extend(Object.clone(Control.Modal.defaultOptions),options || {}));
 	}
 });
 Object.extend(Control.Modal,{
@@ -867,12 +866,12 @@ Control.LightBox = Class.create(Control.Window,{
 	initialize: function($super,container,options){
 		this.allImagesLoaded = false;
 		if(options.modal){
-			var options = Object.extend(Control.LightBox.defaultOptions,options || {});
-			options = Object.extend(Control.Modal.defaultOptions,options);
+			var options = Object.extend(Object.clone(Control.LightBox.defaultOptions),options || {});
+			options = Object.extend(Object.clone(Control.Modal.defaultOptions),options);
 			options = Control.Modal.InstanceMethods.beforeInitialize.bind(this)(options);
 			$super(container,options);
 		}else
-			$super(container,Object.extend(Control.LightBox.defaultOptions,options || {}));
+			$super(container,Object.extend(Object.clone(Control.LightBox.defaultOptions),options || {}));
 		this.hasRemoteContent = this.href && !this.options.iframe;
 		if(this.hasRemoteContent)
 			this.observe('onRemoteContentLoaded',Control.LightBox.Observers.onRemoteContentLoaded.bind(this));

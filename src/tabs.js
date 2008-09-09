@@ -39,7 +39,7 @@ Control.Tabs = Class.create({
 			? $(tab_list_container).select(this.options.linkSelector)
 			: this.options.linkSelector($(tab_list_container))
 		).findAll(function(link){
-			return (/^#/).exec(link.href.replace(window.location.href.split('#')[0],''));
+			return (/^#/).exec((Prototype.Browser.WebKit ? decodeURIComponent(link.href) : link.href).replace(window.location.href.split('#')[0],''));
 		}).each(function(link){
 			this.addTab(link);
 		}.bind(this));
